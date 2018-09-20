@@ -1,5 +1,15 @@
-const nodeExternals = require('webpack-node-externals')
+const { VueLoaderPlugin } = require('vue-loader');
+
 module.exports = {
-  mode: 'development',
-  externals: [nodeExternals()]
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
+      }
+    ]
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 }

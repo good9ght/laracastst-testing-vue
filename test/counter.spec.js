@@ -1,7 +1,7 @@
-import Counter from '../src/components/Counter';
 import { shallowMount } from '@vue/test-utils';
+import Counter from '../src/components/Counter.vue';
 
-describe('Counter', () => {
+describe('Counter.vue', () => {
     let wrapper;
     beforeEach(() => {
         wrapper = shallowMount(Counter);

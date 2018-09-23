@@ -1,10 +1,12 @@
 import { mount } from '@vue/test-utils';
 import expect from 'expect';
+import moxios from 'moxios';
 import Question from '../src/components/Question.vue';
 
 describe('Question', () => {
     let wrapper;
     beforeEach(() => {
+        moxios.install();
         wrapper = mount(Question, {
             propsData: {
                 question: {
@@ -13,6 +15,10 @@ describe('Question', () => {
                 }
             }
         });
+    });
+
+    afterEach(() => {
+        moxios.uninstall();
     });
 
     it ('presets the title and the body', () => {
@@ -43,10 +49,24 @@ describe('Question', () => {
         type('Changed Title', 'input[name=title]');
         type('Changed Body', 'textarea[name=body]');
 
+        moxios.stubRequest('/questions/1', {
+            status: 200,
+            response: {
+                title: 'Changed title',
+                body: 'Changed body',
+            }
+        });
+
         click('#update');
 
         see('Changed Title');
         see('Changed Body');
+        
+        // moxios.wait(() => {
+        //     see('Changed Title');
+        //     done();
+        // });
+
     });
     
     it ('can cancel out of edit mode', () => {

@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@vue/test-utils": "^1.0.0-beta.25",
+    "axios": "^0.18.0",
+    "moxios": "^0.4.0",
     "vue": "^2.5.17",
     "vue-template-compiler": "^2.5.17"
   },
